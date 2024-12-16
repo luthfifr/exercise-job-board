@@ -1,3 +1,4 @@
+import { getCompany } from './db/companies.js'
 import { getJobs } from './db/jobs.js';
 
 export const resolvers = {
@@ -8,6 +9,7 @@ export const resolvers = {
     },
 
     Job: {
+        company: (job) => getCompany(job.companyId),
         // case: field names of date and time are not the same on DB and GraphQL schema. resolving it as follow:
         date: (job) =>  toIsoDate(job.createdAt),
     },
