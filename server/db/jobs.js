@@ -3,6 +3,10 @@ import { generateId } from './ids.js';
 
 const getJobTable = () => connection.table('job');
 
+export async function getJobsByCompany(companyId) {
+  return await getJobTable().select().where({ companyId });
+}
+
 export async function getJobs() {
   return await getJobTable().select();
 }
